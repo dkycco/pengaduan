@@ -1,23 +1,41 @@
-FROM php:8.4-fpm
+FROM php:8.4-cli
 
-# System dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
-    libzip-dev \
+    curl \
     libpng-dev \
+    libonig-dev \
     libxml2-dev \
-    && docker-php-ext-install pdo_mysql zip dom
+    zip
 
-# Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# Install PHP extensions required by Laravel
+RUN docker-php-ext-install \
+    pdo \
+    pdo_mysql \
+    mbstring \
+    bcmath \
+    gd \
+    pcntl
 
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set working directory
 WORKDIR /var/www
 
+# Copy project files
 COPY . .
 
+# Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-RUN chown -R www-data:www-data storage bootstrap/cache
+# Permission Laravel
+RUN chmod -R 775 storage bootstrap/cache
 
-CMD ["php-fpm"]
+# Expose Laravel port
+EXPOSE 5000
+
+# Run Laravel built-in server
+CMD php artisan serve --host=0.0.0.0 --port=5000
