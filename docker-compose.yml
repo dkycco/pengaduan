@@ -4,6 +4,8 @@ services:
   app:
     build: .
     container_name: pengaduan_app
+    ports:
+      - "4012:8000"
     volumes:
       - .:/var/www
     environment:
