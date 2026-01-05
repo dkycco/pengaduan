@@ -3,7 +3,7 @@ version: "3.8"
 services:
   laravel:
     build: .
-    container_name: laravel_php84
+    container_name: pengaduan_web
     ports:
       - "5000:5000"
     volumes:
