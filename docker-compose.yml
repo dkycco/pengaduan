@@ -1,18 +1,7 @@
-version: "3.8"
-
 services:
   app:
     build: .
     container_name: pengaduan_app
-    ports:
-      - "4012:8000"
     volumes:
       - .:/var/www
-    environment:
-      DB_CONNECTION: mysql
-      DB_HOST: 192.168.1.4
-      DB_PORT: 3306
-      DB_DATABASE: pengaduan
-      DB_USERNAME: smkkorprisumedang
-      DB_PASSWORD: 20208395
     restart: unless-stopped
