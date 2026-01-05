@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniVoice UNSAP</title>
+    <title>TechHive UNSAP</title>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <img class="logo" src="{{ asset('img/logo.png') }}" alt="">
-                <span class="logo-text">UniVoice</span>
+                <span class="logo-text">TechHive</span>
             </div>
 
             <ul class="nav-menu">
