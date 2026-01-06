@@ -65,7 +65,6 @@
                                         stroke-linecap="round" />
                                 </svg>
                                 Tracking
-                                <span class="nav-badge">New</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -81,7 +80,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('logout') }}" class="nav-link">
+                            <a href="{{ route('logout') }}" class="nav-link logout">
                                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
@@ -98,7 +97,7 @@
 
         <main class="main-content">
             <nav class="navbar">
-                <h1 class="page-title">Beranda</h1>
+                <h1 class="page-title">{{ ucwords(str_replace('-', ' ', request()->route()->getName())) }}</h1>
                 <div class="navbar-right">
                     <div class="search-box">
                         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -155,6 +154,33 @@
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
 
-@stack('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('success'))
+<script>
+    Swal.fire({
+        title: 'Berhasil 🎉',
+        text: 'Pengaduan berhasil dikirim',
+        icon: 'success',
+        background: 'rgba(255, 255, 255, 0.05)',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#34d399',
+        customClass: {
+            popup: 'custom-swal'
+        }
+    });
+</script>
+@endif
+
+@if (session('error'))
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Gagal ❌',
+    text: '{{ session('error') }}',
+    confirmButtonText: 'Tutup'
+});
+</script>
+@endif
 
 </html>

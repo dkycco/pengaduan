@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function fakultas() {
+        return $this->belongsTo(Fakultas::class, 'fakultas_id');
+    }
+
+    public function prodi() {
+        return $this->belongsTo(Prodi::class, 'prodi_id');
+    }
 }

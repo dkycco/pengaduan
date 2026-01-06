@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
+use App\Models\PengaduanStatus;
 use Illuminate\Http\Request;
 
 class PengaduanController extends Controller
@@ -20,15 +21,16 @@ class PengaduanController extends Controller
     }
 
     public function pengaduan_store(Request $request) {
+        $userId = auth()->check() && !$request->anonim ? auth()->id() : null;
+
         $validated = $request->validate([
-            'user_id' => 'required',
             'judul' => 'required',
             'kategori' => 'required',
             'fakultas' => 'required',
             'lokasi_ruangan' => 'required',
             'gambar' => 'required',
             'deskripsi' => 'required',
-            'harapan_saran' => 'required',
+            'harapan_saran' => 'required'
         ]);
 
         try {
@@ -44,17 +46,23 @@ class PengaduanController extends Controller
             $path = $file->storeAs('pengaduan', $filename, 'public');
 
             $pengaduan = Pengaduan::create([
-                'user_id' => $validated['user_id'],
+                'user_id' => $userId,
                 'judul' => $validated['judul'],
                 'kategori' => $validated['kategori'],
                 'fakultas_id' => $validated['fakultas'],
                 'lokasi_ruangan_id' => $validated['lokasi_ruangan'],
                 'gambar' => $path,
                 'deskripsi' => $validated['deskripsi'],
-                'harapan_saran' => $validated['harapan_saran']
+                'harapan_saran' => $validated['harapan_saran'],
+                'anonim' => $request->anonim ? 'true' : 'false'
             ]);
 
-            return redirect()->back()
+            PengaduanStatus::create([
+                'pengaduan_id' => $pengaduan->id,
+                'waktu_dibuat' => now()
+            ]);
+
+            return redirect('/')
                 ->with('success', 'Pengaduan berhasil dikirim');
         } catch (\Throwable $th) {
             return redirect()->back()

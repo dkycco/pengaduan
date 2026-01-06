@@ -305,6 +305,14 @@ a {
     list-style: none;
 }
 
+.nav-item .logout {
+    color: var(--danger);
+}
+
+.nav-item .logout:hover {
+    color: var(--danger);
+}
+
 .nav-link {
     display: flex;
     align-items: center;
@@ -773,6 +781,24 @@ CONTENT ITEMS
     gap: 2px;
 }
 
+.card-alert {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.card-alert span {
+    color: var(--text-muted);
+}
+
+.alert-icon {
+    height: 50px;
+    width: 50px;
+    color: var(--text-muted);
+}
+
 .info-item {
     display: flex;
     align-items:center ;
@@ -797,6 +823,14 @@ CONTENT ITEMS
 .content-text {
     margin-top: 20px;
     color: var(--text-secondary);
+}
+
+.content-text .deskripsi {
+    margin-bottom: 20px;
+}
+
+.content-text .harapan-saran {
+    font-style: italic;
 }
 
 .content-subtitle {

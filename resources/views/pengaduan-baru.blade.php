@@ -41,19 +41,19 @@
                         <input type="text" name="user_id" value="{{ auth()->user()->id }}" hidden>
                         <div class="form-group-settings">
                             <label>Nama lengkap</label>
-                            <input type="text" value="{{ auth()->user()->nama }}">
+                            <input disabled type="text" value="{{ auth()->user()->nama }}">
                         </div>
                         <div class="form-group-settings">
                             <label>NIM</label>
-                            <input type="number" value="{{ auth()->user()->nim }}">
+                            <input disabled type="number" value="{{ auth()->user()->nim }}">
                         </div>
                         <div class="form-group-settings">
                             <label>Fakultas</label>
-                            <input type="text" value="{{ auth()->user()->fakultas_id }}">
+                            <input disabled type="text" value="{{ auth()->user()->fakultas->nama }}">
                         </div>
                         <div class="form-group-settings">
                             <label>Prodi</label>
-                            <input type="text" value="{{ auth()->user()->prodi_id }}">
+                            <input disabled type="text" value="{{ auth()->user()->prodi->nama }}">
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <div class="settings-row">
                         <label for="">Anonim</label>
                         <label class="toggle-switch">
-                            <input type="checkbox" name="anonim" value="1">
+                            <input type="checkbox" name="anonim" value="true">
                             <span class="toggle-slider"></span>
                         </label>
                     </div>
@@ -131,34 +131,3 @@
     </div>
 </div>
 @endsection
-
-@push('js')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    @if (session('success'))
-    <script>
-        Swal.fire({
-            title: 'Berhasil 🎉',
-            text: 'Pengaduan berhasil dikirim',
-            icon: 'success',
-            background: 'rgba(255, 255, 255, 0.05)',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#34d399',
-            customClass: {
-                popup: 'custom-swal'
-            }
-        });
-    </script>
-    @endif
-
-    @if (session('error'))
-    <script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Gagal ❌',
-        text: '{{ session('error') }}',
-        confirmButtonText: 'Tutup'
-    });
-    </script>
-    @endif
-@endpush

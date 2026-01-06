@@ -17,9 +17,9 @@ class Pengaduan extends Model
         'gambar',
         'deskripsi',
         'harapan_saran',
-        'status',
-        'create_at',
-        'update_at'
+        'suka',
+        'created_at',
+        'updated_at'
     ];
 
     public function user() {
@@ -28,5 +28,9 @@ class Pengaduan extends Model
 
     public function fakultas() {
         return $this->belongsTo(Fakultas::class, 'fakultas_id');
+    }
+
+    public function pengaduan_status() {
+        return $this->hasOne(PengaduanStatus::class, 'pengaduan_id');
     }
 }

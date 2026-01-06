@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('pengaduan', function(Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->enum('kategori', ['fasilitas_kampus', 'pelayanan_administrasi', 'kebijakan_kampus', 'tenaga_pengajar/staf', 'kegiatan_mahasiswa'])->nullable();
-            $table->string('judul')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->enum('kategori', ['fasilitas_kampus', 'pelayanan_administrasi', 'kebijakan_kampus', 'tenaga_pengajar/staf', 'kegiatan_mahasiswa']);
+            $table->string('judul');
             $table->foreignId('fakultas_id')->constrained('fakultas');
             $table->foreignId('lokasi_ruangan_id')->constrained('lokasi_ruangan');
             $table->string('gambar');
-            $table->string('deskripsi')->nullable();
-            $table->string('harapan_saran');
-            $table->boolean('anonim')->default(0);
+            $table->text('deskripsi');
+            $table->text('harapan_saran');
+            $table->integer('suka')->default(0)->nullable();
+            $table->enum('anonim', ['true', 'false']);
             $table->timestamps();
         });
     }
