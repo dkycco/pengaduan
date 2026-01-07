@@ -27,28 +27,30 @@ class DatabaseSeeder extends Seeder
             'fakultas_id' => $fakultas->id
         ]);
 
-        $ruangan = LokasiRuangan::create([
+        LokasiRuangan::create([
             'nama' => 'Ruang 1',
             'fakultas_id' => $fakultas->id,
             'prodi_id' => $prodi->id
         ]);
 
-        $user = User::create([
+        User::create([
             'uuid' => Str::uuid(),
             'nama' => 'Diki Muhamad Alfikri',
             'nim' => '230660121111',
             'fakultas_id' => $fakultas->id,
             'prodi_id' => $prodi->id,
             'foto_profile' => '',
-            'password' => bcrypt('12345')
-        ], [
+            'password' => bcrypt('12345'),
+        ]);
+
+        User::create([
             'uuid' => Str::uuid(),
             'nama' => 'Admin',
             'nim' => '230660121112',
             'fakultas_id' => $fakultas->id,
             'prodi_id' => $prodi->id,
             'foto_profile' => '',
-            'password' => bcrypt('admin')
+            'password' => bcrypt('admin'),
         ]);
     }
 }
