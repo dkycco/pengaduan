@@ -41,6 +41,14 @@ class DatabaseSeeder extends Seeder
             'prodi_id' => $prodi->id,
             'foto_profile' => '',
             'password' => bcrypt('12345')
+        ], [
+            'uuid' => Str::uuid(),
+            'nama' => 'Admin',
+            'nim' => '230660121112',
+            'fakultas_id' => $fakultas->id,
+            'prodi_id' => $prodi->id,
+            'foto_profile' => '',
+            'password' => bcrypt('admin')
         ]);
     }
 }
