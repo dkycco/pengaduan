@@ -77,7 +77,7 @@
                 <div class="card-header">
                     <div>
                         <h2 class="card-title">{{ $item->anonim === 'true' ? 'Pengguna Anonim' : $item->user->nama }}</h2>
-                        <p class="card-subtitle">{{ $item->created_at->format('D - d M Y') }}</p>
+                        <p class="card-subtitle">{{ formatTanggal( $item->created_at) }}</p>
                     </div>
                     <div class="card-info">
                         <div class="info-item card-subtitle">
@@ -171,13 +171,13 @@
     </div>
 
     <div class="content-items">
-        <h2 class="card-title">Pengaduan Selesai</h2>
+        <h2 class="card-title">Top Pengaduan Selesai</h2>
 
         @forelse ($pengaduan_selesai as $item)            
             <div class="glass-card">
                 <div class="card-header">
                     <div>
-                        <h2 class="card-title">{{ $item->user_id ? $item->user->nama : 'Pengguna Anonim' }}</h2>
+                        <h2 class="card-title">{{ $item->anonim === 'true' ? 'Pengguna Anonim' : $item->user->nama }}</h2>
                         <p class="card-subtitle">{{ $item->created_at->format('D - d M Y') }}</p>
                     </div>
                     <div class="card-info">

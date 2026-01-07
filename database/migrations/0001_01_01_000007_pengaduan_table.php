@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pengaduan', function(Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->uuid('user_uuid');
             $table->enum('kategori', [
                 'fasilitas_kampus', 'pelayanan_administrasi',

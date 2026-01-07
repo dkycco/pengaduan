@@ -17,6 +17,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/pengaduan-baru/store', [PengaduanController::class, 'pengaduan_store'])->name('pengaduan-store');
 
     Route::get('/tracking', [PengaduanController::class, 'tracking'])->name('tracking');
-    Route::get('/tracking/detail/{pengaduan_id}', [PengaduanController::class, 'tracking_detail'])->name('tracking-detail');
+    Route::get('/tracking/detail/{pengaduan_uuid}', [PengaduanController::class, 'tracking_detail'])->name('tracking-detail');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile/new-password', [ProfileController::class, 'new_password'])->name('new-password');
 });

@@ -13,6 +13,7 @@ class Pengaduan extends Model
     protected $table = 'pengaduan';
 
     protected $fillable = [
+        'uuid',
         'user_uuid',
         'judul',
         'kategori',
@@ -25,6 +26,14 @@ class Pengaduan extends Model
         'anonim'
     ];
 
+    protected static function booted() {
+        static::creating(function ($pengaduan) {
+            if (!$pengaduan->uuid) {
+                $pengaduan->uuid = (string) Str::uuid();
+            }
+        });
+    }
+
     public function user() {
         return $this->belongsTo(User::class, 'user_uuid', 'uuid');
     }
@@ -34,6 +43,6 @@ class Pengaduan extends Model
     }
 
     public function pengaduan_status() {
-        return $this->hasOne(PengaduanStatus::class, 'pengaduan_id');
+        return $this->hasOne(PengaduanStatus::class, 'pengaduan_uuid');
     }
 }

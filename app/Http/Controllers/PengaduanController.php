@@ -13,8 +13,8 @@ class PengaduanController extends Controller
         return view('tracking', compact('data'));
     }
 
-    public function tracking_detail($pengaduan) {
-        $data = Pengaduan::findOrFail($pengaduan);
+    public function tracking_detail($uuid) {
+        $data = Pengaduan::where('uuid', $uuid)->firstOrFail();;
         return view('tracking-detail', compact('data'));
     }
 
@@ -58,16 +58,16 @@ class PengaduanController extends Controller
             ]);
 
             PengaduanStatus::create([
-                'pengaduan_id' => $pengaduan->id,
+                'pengaduan_uuid' => $pengaduan->uuid,
                 'status' => 'terkirim',
-                'waktu_dibuat' => now()
+                'waktu_terkirim' => now()
             ]);
 
             return redirect('/')
                 ->with('success', 'Pengaduan berhasil dikirim');
         } catch (\Throwable $th) {
             return redirect()->back()
-                ->with('error', 'Pengaduan gagal dikirim' + $th);
+                ->with('error', 'Pengaduan gagal dikirim');
         }
     }
 }

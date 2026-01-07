@@ -9,9 +9,9 @@ class PengaduanStatus extends Model
     protected $table = 'pengaduan_status';
 
     protected $fillable = [
-        'pengaduan_id',
+        'pengaduan_uuid',
         'status',
-        'waktu_dibuat',
+        'waktu_terkirim',
         'waktu_diproses',
         'waktu_selesai'
     ];

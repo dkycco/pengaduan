@@ -34,35 +34,35 @@
     </div>
 
     <div class="card-body">
-        <img class="content-img" src="{{ asset('img/img-content.jpg') }}" alt="">
+        <img class="content-img" src="{{ asset('storage/' . $data->gambar) }}" alt="">
 
-        <h2 class="content-title">LAB komputer yang tidak layak</h2>
+        <h2 class="content-title">{{ $data->judul }}</h2>
         <div class="content-text">
-            <p>Terdapat beberapa komputer yang tidak layak serta kondisi dari lab tersebut tidak
-                rapih dan bersih.</p>
-            <span class="content-subtitle">Lihat selengkapnya...</span>
+            <p class="deskripsi">{{ $data->deskripsi }}</p>
+            <span class="content-subtitle">Harapan/saran</span>
+            <p class="harapan-saran">"{{ $data->harapan_saran }}"</p>
         </div>
 
         <div class="tracking-detail">
             <div class="row">
                 <div class="col left">
-                    <p class="active">20:00 WIB - 1 Januari 2026</p>
-                    <p class="active">08:00 WIB - 4 Januari 2026</p>
-                    <p>-</p>
+                    <p class="">{{ formatTanggal($data->pengaduan_status->waktu_terkirim) }}</p>
+                    <p class="">{{ formatTanggal($data->pengaduan_status->waktu_diproses) }}</p>
+                    <p class="">{{ formatTanggal($data->pengaduan_status->waktu_selesai) }}</p>
                 </div>
 
                 <div class="col track">
-                    <div class="active"></div>
-                    <span class="active"></span>
-                    <div class="active"></div>
-                    <span></span>
-                    <div></div>
+                    <div class="{{ $data->pengaduan_status->waktu_terkirim ? 'active' : '' }}"></div>
+                    <span class="{{ $data->pengaduan_status->waktu_diproses ? 'active' : '' }}"></span>
+                    <div class="{{ $data->pengaduan_status->waktu_diproses ? 'active' : '' }}"></div>
+                    <span class="{{ $data->pengaduan_status->waktu_selesai ? 'active' : '' }}"></span>
+                    <div class="{{ $data->pengaduan_status->waktu_selesai ? 'active' : '' }}"></div>
                 </div>
 
                 <div class="col right">
-                    <p class="active">Pengaduan dibuat</p>
-                    <p class="active">Diproses</p>
-                    <p>Selesai</p>
+                    <p class="">Pengaduan terkirim</p>
+                    <p class="">Diproses</p>
+                    <p class="">Selesai</p>
                 </div>
             </div>
         </div>
