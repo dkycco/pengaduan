@@ -43,6 +43,6 @@ class Pengaduan extends Model
     }
 
     public function pengaduan_status() {
-        return $this->hasOne(PengaduanStatus::class, 'pengaduan_uuid');
+        return $this->hasOne(PengaduanStatus::class, 'pengaduan_uuid', 'uuid');
     }
 }
