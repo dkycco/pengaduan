@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 class PengaduanController extends Controller
 {
     public function tracking() {
-        return view('tracking');
+        $data = Pengaduan::get();
+        return view('tracking', compact('data'));
     }
 
-    public function tracking_detail() {
-        return view('tracking-detail');
+    public function tracking_detail($pengaduan) {
+        $data = Pengaduan::findOrFail($pengaduan);
+        return view('tracking-detail', compact('data'));
     }
 
     public function pengaduan_baru() {
@@ -21,14 +23,12 @@ class PengaduanController extends Controller
     }
 
     public function pengaduan_store(Request $request) {
-        $userId = auth()->check() && !$request->anonim ? auth()->id() : null;
-
         $validated = $request->validate([
             'judul' => 'required',
             'kategori' => 'required',
             'fakultas' => 'required',
             'lokasi_ruangan' => 'required',
-            'gambar' => 'required',
+            'gambar' => 'required|image|mimes:jpg,jpeg,png',
             'deskripsi' => 'required',
             'harapan_saran' => 'required'
         ]);
@@ -46,7 +46,7 @@ class PengaduanController extends Controller
             $path = $file->storeAs('pengaduan', $filename, 'public');
 
             $pengaduan = Pengaduan::create([
-                'user_id' => $userId,
+                'user_uuid' => auth()->user()->uuid,
                 'judul' => $validated['judul'],
                 'kategori' => $validated['kategori'],
                 'fakultas_id' => $validated['fakultas'],
@@ -59,6 +59,7 @@ class PengaduanController extends Controller
 
             PengaduanStatus::create([
                 'pengaduan_id' => $pengaduan->id,
+                'status' => 'terkirim',
                 'waktu_dibuat' => now()
             ]);
 
@@ -66,7 +67,7 @@ class PengaduanController extends Controller
                 ->with('success', 'Pengaduan berhasil dikirim');
         } catch (\Throwable $th) {
             return redirect()->back()
-                ->with('error', 'Pengaduan gagal dikirim');
+                ->with('error', 'Pengaduan gagal dikirim' + $th);
         }
     }
 }

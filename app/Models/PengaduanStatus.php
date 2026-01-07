@@ -13,8 +13,6 @@ class PengaduanStatus extends Model
         'status',
         'waktu_dibuat',
         'waktu_diproses',
-        'waktu_selesai',
-        'created_at',
-        'updated_at'
+        'waktu_selesai'
     ];
 }

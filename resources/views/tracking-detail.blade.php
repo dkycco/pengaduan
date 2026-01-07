@@ -4,8 +4,8 @@
 <div class="glass-card">
     <div class="card-header">
         <div>
-            <h2 class="card-title">Pengguna Anonim</h2>
-            <p class="card-subtitle">1 Januari 2026</p>
+            <h2 class="card-title">{{ $data->anonim === 'true' ? 'Pengguna Anonim' : $data->user->nama }}</h2>
+            <p class="card-subtitle">{{ $data->created_at->format('D - d M Y') }}</p>
         </div>
         <div class="card-info">
             <div class="info-item card-subtitle">
@@ -19,7 +19,7 @@
                     <path d="M11.5416 18.5001L12.5416 17.5001M18.5206 11.5209L14.9999 15.0417" stroke-width="1.5"
                         stroke-linecap="round" />
                 </svg>
-                Fasilitas Kampus
+                {{ ucwords(str_replace('_', ' ', $data->kategori)) }}
             </div>
             <div class="info-item card-subtitle">
                 <svg class="info-icon" fill="currentColor" viewBox="0 -0.05 26.1 26.1">
@@ -28,7 +28,7 @@
                             d="M63,126c-7.2,0-13-1.6-13-3.5,0-1.3,2.6-2.4,6.5-3l1.6,1.7c-3.6.2-5.5.8-5.5,1.3,0,.8,4.3,1.5,10.4,1.5s10.5-.7,10.5-1.5c0-.6-1.9-1.1-5.5-1.3l1.6-1.7c3.9.6,6.5,1.7,6.5,3C76,124.4,70.2,126,63,126Zm4-17a4,4,0,1,1-4-4A4.012,4.012,0,0,1,67,109Zm-6,0a2,2,0,1,0,2-2A2.006,2.006,0,0,0,61,109Zm3,12-1,1-1-1c-.3-.4-6.6-5.8-7.8-10.5-.1-.3-.3-1.4.8-1.5.9-.1,1.1,1,1.1,1,.8,3.5,5.2,6.9,6.9,9,1.8-2.3,7-6.1,7-10,0-4.5-2.6-7-7-7-3.3,0-5.6,1.4-6.5,4,0,0-.4,1.2-1.1,1-.8-.2-.9-.8-.6-1.7A9,9,0,0,1,72,109C72,114,64.4,120.6,64,121Z" />
                     </g>
                 </svg>
-                FTI - LAB 1
+                {{ $data->fakultas->nama }}
             </div>
         </div>
     </div>

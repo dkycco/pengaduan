@@ -38,7 +38,6 @@
                 <div class="settings-section">
                     <h3 class="settings-section-title">Informasi Data Diri</h3>
                     <div class="form-grid">
-                        <input type="text" name="user_id" value="{{ auth()->user()->id }}" hidden>
                         <div class="form-group-settings">
                             <label>Nama lengkap</label>
                             <input disabled type="text" value="{{ auth()->user()->nama }}">

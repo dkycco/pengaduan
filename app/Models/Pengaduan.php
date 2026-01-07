@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Pengaduan extends Model
 {
+    use HasFactory;
+
     protected $table = 'pengaduan';
 
     protected $fillable = [
-        'user_id',
+        'user_uuid',
         'judul',
         'kategori',
         'fakultas_id',
@@ -18,12 +22,11 @@ class Pengaduan extends Model
         'deskripsi',
         'harapan_saran',
         'suka',
-        'created_at',
-        'updated_at'
+        'anonim'
     ];
 
     public function user() {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_uuid', 'uuid');
     }
 
     public function fakultas() {

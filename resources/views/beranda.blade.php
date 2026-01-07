@@ -76,7 +76,7 @@
             <div class="glass-card">
                 <div class="card-header">
                     <div>
-                        <h2 class="card-title">{{ $item->user_id ? $item->user->nama : 'Pengguna Anonim' }}</h2>
+                        <h2 class="card-title">{{ $item->anonim === 'true' ? 'Pengguna Anonim' : $item->user->nama }}</h2>
                         <p class="card-subtitle">{{ $item->created_at->format('D - d M Y') }}</p>
                     </div>
                     <div class="card-info">

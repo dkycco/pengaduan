@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('pengaduan', function(Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->enum('kategori', ['fasilitas_kampus', 'pelayanan_administrasi', 'kebijakan_kampus', 'tenaga_pengajar/staf', 'kegiatan_mahasiswa']);
+            $table->uuid('user_uuid');
+            $table->enum('kategori', [
+                'fasilitas_kampus', 'pelayanan_administrasi',
+                'kebijakan_kampus', 'tenaga_pengajar/staf', 
+                'kegiatan_mahasiswa'
+            ]);
             $table->string('judul');
             $table->foreignId('fakultas_id')->constrained('fakultas');
             $table->foreignId('lokasi_ruangan_id')->constrained('lokasi_ruangan');

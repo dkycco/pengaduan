@@ -159,7 +159,7 @@
 @if (session('success'))
 <script>
     Swal.fire({
-        title: 'Berhasil 🎉',
+        title: 'Berhasil',
         text: 'Pengaduan berhasil dikirim',
         icon: 'success',
         background: 'rgba(255, 255, 255, 0.05)',
@@ -176,9 +176,13 @@
 <script>
 Swal.fire({
     icon: 'error',
-    title: 'Gagal ❌',
+    title: 'Gagal',
     text: '{{ session('error') }}',
-    confirmButtonText: 'Tutup'
+    confirmButtonText: 'Tutup',
+    confirmButtonColor: '#34d399',
+        customClass: {
+        popup: 'custom-swal'
+    }
 });
 </script>
 @endif
